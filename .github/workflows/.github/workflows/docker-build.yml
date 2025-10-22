@@ -1,0 +1,19 @@
+name: Docker Build
+
+on:
+  push:
+    branches: [dev, staging, main, feature/*]
+  pull_request:
+    branches: [dev, staging, main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: |
+        docker build -t my-app .
+    - name: Test the Docker image
+      run: |
+        docker run my-app python -c "from app.app import dedupe; print('Dedupe function works')"
