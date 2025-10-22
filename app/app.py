@@ -15,11 +15,22 @@ if __name__ == "__main__":
     print(f"Original: {sample_list}")
     print(f"After deduplication: {result}")
 
+
+
+
+def dedupe(items):
+    seen = set()
+    for item in items:
+        if item not in seen:
+            yield item
+            seen.add(item)
+
 def add_numbers(a, b):
+    """Add two numbers together"""
     return a + b
 
-# 如果这是主要执行文件，可以添加：
-if __name__ == "__main__":
-    print("Addition function is ready!")
-    result = add_numbers(5, 3)
-    print(f"5 + 3 = {result}")
+if __name__ == '__main__':
+    sample = [1, 2, 3, 1, 2, 5]
+    print(f"Original: {sample}")
+    print(f"Deduplicated: {list(dedupe(sample))}")
+    print(f"Addition test: 2 + 3 = {add_numbers(2, 3)}")
